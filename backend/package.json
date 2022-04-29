@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -w",
-    "dev": "nodemon build/index.js",
-    "jison": "jison src/controllers/Analizador/analizador.jison && copy analizador.js build\\controllers\\Analizador",
+    "dev": "node ./build/index.js",
+    "jison": "jison src/controllers/analizador/analizador.jison && copy analizador.js build\\controllers\\Analizador",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
