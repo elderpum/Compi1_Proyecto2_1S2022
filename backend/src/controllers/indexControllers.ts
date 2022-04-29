@@ -1,39 +1,61 @@
-import { Request, Response } from 'express';
-import Errores from './analizador/excepciones/Errores';
-import Arbol from './analizador/simbolo/Arbol';
-import tablaSimbolo from './analizador/simbolo/tablaSimbolo';
-export let listaErrores: Array<Errores>;
-//tablas arboles y excepcciones
-class IndexController {
-  public index(req: Request, res: Response) {
-    //res.send('Mensaje');
-    res.json({ text: 'Bienvenido al ejemplo' });
-  }
-  public interpretar(req: Request, res: Response) {
-    listaErrores = new Array<Errores>();
-    let parser = require('./Analizador/analizador');
-    const { peticion } = req.body;
-    try {
-      let ast = new Arbol(parser.parse(peticion));
-      var tabla = new tablaSimbolo();
-      ast.settablaGlobal(tabla);
-      for (let i of ast.getinstrucciones()) {
-        if (i instanceof Errores) {
-          listaErrores.push(i);
-          ast.actualizaConsola((<Errores>i).returnError());
-        }
+import express , {query, Request, Response} from "express";
+import { Instruccion } from "./analizador/abstracto/instruccion";
+import Excepcion from "./analizador/excepciones/Errores";
+import ArbolAST from './analizador/tablaSimbolo/ArbolAST';
+import Entorno from './analizador/tablaSimbolo/Entorno';
 
-        var resultador = i.interpretar(ast, tabla);
-        if (resultador instanceof Errores) {
-          listaErrores.push(resultador);
-          ast.actualizaConsola((<Errores>resultador).returnError());
-        }
+class indexController {
 
-        res.json({ consola: ast.getconsola(), errores: listaErrores, simbolos: [] });
-      }
-    } catch (err) {
-      res.json({ consola: '', error: err, errores: listaErrores, simbolos: [] });
+    public  async index(req: Request, res: Response) {
+        res.json();
     }
-  }
+
+    public interpretar(req: Request, res: Response) {
+
+        const Contenido = req.body.Contenido;
+        try {
+            let parse = require("./analizador/analizador");
+            let ast = new ArbolAST([]);
+            try{
+                ast = parse.parse(Contenido);
+                if (typeof(ast)==typeof(true)) {
+                    ast = new ArbolAST([]);
+                    ast.num_error++;
+                    ast.errores.push(new Excepcion(ast.num_error, "SINTACTICO","Error inrecuperable",-1,-1));
+                }
+            }catch(e){
+                ast.num_error++;
+                ast.errores.push(new Excepcion(ast.num_error, "SINTACTICO","Error inrecuperable",-1,-1));
+            }
+            if (typeof(ast)===typeof(new ArbolAST([]))) {
+                const tabla = new Entorno();
+                ast.global = tabla;
+                ast.EjecutarBloque();
+                if (ast.errores.length>0) {
+                    ast.consola+="\n*******************Errores*********************";
+                    for(let error of ast.errores){
+                        ast.consola+="\n"+error.toString();
+                    }
+                }
+                res.json({consola: ast.consola, Errores: ast.errores, Simbolo:ast.lista_simbolos});
+            }else{
+                res.json({consola:"", Errores:[], Simbolo:[]});
+            }
+        } catch (err) {
+            console.log(err);
+            res.json({consola:"", Errores:[], Simbolo:[]});
+        }
+    }
+
+    public open(req: Request, res: Response){
+        try{
+            const Contenido = req.body.Contenido;
+            let parse = require("./analizador/analizador");
+            let ast = new ArbolAST([]);
+            ast = parse.parse(Contenido);
+            ast.openFile();
+        }catch{}
+    }
 }
-export const indexController = new IndexController();
+
+export const IndexController = new indexController();
