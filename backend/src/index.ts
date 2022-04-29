@@ -1,5 +1,5 @@
 import expres, {Application, Request, Response} from 'express';
-import IndexRoutes from './routes/indexRoutes';
+import IndexRoutes from './routes/IndexRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
 class Server{
