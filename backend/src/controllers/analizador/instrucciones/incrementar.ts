@@ -1,4 +1,4 @@
-import { Instruccion } from "../abstracto/instruccion";
+import { Instruccion } from "../abstracto/Instruccion";
 import { nodoAST } from "../abstracto/nodoAST";
 import { Expresion } from "../expresiones/expresion";
 import ArbolAST from "../tablaSimbolo/ArbolAST";

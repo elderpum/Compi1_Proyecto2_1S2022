@@ -1,5 +1,5 @@
 import express , {query, Request, Response} from "express";
-import { Instruccion } from "./analizador/abstracto/instruccion";
+import { Instruccion } from "./analizador/abstracto/Instruccion";
 import Excepcion from "./analizador/excepciones/Errores";
 import ArbolAST from './analizador/tablaSimbolo/ArbolAST';
 import Entorno from './analizador/tablaSimbolo/Entorno';

@@ -1,6 +1,6 @@
 import Entorno from "./Entorno";
 import Excepcion from "../excepciones/Errores";
-import { Instruccion } from "../abstracto/instruccion";
+import { Instruccion } from "../abstracto/Instruccion";
 import ListaSimbolo from "./ListaSimbolos";
 import { Expresion } from "../expresiones/expresion";
 import { nodoAST } from "../abstracto/nodoAST";

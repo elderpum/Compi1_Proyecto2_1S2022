@@ -1,32 +1,31 @@
-import express, { Application } from 'express';
+import expres, {Application, Request, Response} from 'express';
+import IndexRoutes from './routes/indexRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
-import indexRoutes from './routes/indexRoutes';
-class server {
-  public app: Application;
-  constructor() {
-    this.app = express();
-    this.config();
-    this.routes();
-  }
+class Server{
+    public app: Application;
+    constructor(){
+        this.app = expres();
+        this.config();
+        this.routes();
 
-  config(): void {
-    this.app.set('port', 5000); //el proceso que toma una variable de entorno o el puerto 3000
-    //el set es como si se hubiera declarado el app como una variable
-    this.app.use(morgan('dev')); //dev, es lo que ve la peticion del cliente
-    this.app.use(cors()); //pide datos al server
-    this.app.use(express.json()); //para que se entienda el formato json y lo guarde asi
-    this.app.use(express.urlencoded({ extended: false })); //si se usa formato html
-  }
-
-  routes(): void {
-    this.app.use('/', indexRoutes);
-  }
-  start(): void {
-    this.app.listen(this.app.get('port'), () => {
-      console.log('Servidor en puerto', this.app.get('port'));
-    });
-  }
+    }
+    config(): void{
+        this.app.set('port', process.env.PORT || 3000);
+        this.app.use(morgan('dev'));
+        this.app.use(cors());
+        this.app.use(expres.json());
+        this.app.use(expres.urlencoded({extended:false}));
+    }
+    routes(): void{
+        this.app.use(IndexRoutes);
+    }
+    start(): void{
+        this.app.listen(this.app.get('port'),()=>{
+            console.log("Servidor en el puerto: ", this.app.get('port'))
+        });
+    }
 }
-export const servirdor = new server();
-servirdor.start();
+
+const servidor = new Server();
+servidor.start();
