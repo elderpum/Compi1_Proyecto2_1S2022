@@ -1,5 +1,5 @@
-import { node } from "../abstracto/nodo";
-import { nodoAST } from "../abstracto/nodoAST";
+import { node } from "../Abstract/nodo";
+import { nodoAST } from "../Abstract/nodoAST";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
 import Tipo from "../tablaSimbolo/tipo";

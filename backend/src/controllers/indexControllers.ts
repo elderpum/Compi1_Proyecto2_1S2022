@@ -12,7 +12,7 @@ class indexController {
 
     public interpretar(req: Request, res: Response) {
 
-        const Contenido = req.body.Contenido;
+        const Contenido = req.body.compiling;
         try {
             let parse = require("./analizador/analizador");
             let ast = new ArbolAST([]);

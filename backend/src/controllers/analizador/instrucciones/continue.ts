@@ -1,6 +1,6 @@
-import { Instruccion } from "../abstracto/Instruccion";
-import { nodoAST } from "../abstracto/nodoAST";
-import Excepcion from "../excepciones/Errores";
+import { Instruccion } from "../Abstract/instruccion";
+import { nodoAST } from "../Abstract/nodoAST";
+import Excepcion from "../exceptions/Excepcion";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
 

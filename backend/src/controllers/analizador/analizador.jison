@@ -138,7 +138,7 @@
 "Typeof"                return "TYPEOF";
 "toSTRING"              return "TOSTRING";
 "toCharArray"           return "CHARARRAY";
-"Exec"                  return "EXEC";
+"RUN"                   return "RUN";
 
 
 
@@ -295,8 +295,8 @@ DOWHILE
 LLAMADA
     :ID PARIZ L_EXP PARDER              {$$ = new FUNCION.default(this._$.first_line, this._$.first_column, $1, $3);}
     |ID PARIZ PARDER                    {$$ = new FUNCION.default(this._$.first_line, this._$.first_column, $1, undefined);}
-    |EXEC ID PARIZ L_EXP PARDER         {$$ = undefined; ArbolAST.exec.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, $4));}
-    |EXEC ID PARIZ PARDER               {$$ = undefined; ArbolAST.exec.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, undefined));}
+    |RUN ID PARIZ L_EXP PARDER         {$$ = undefined; ArbolAST.RUN.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, $4));}
+    |RUN ID PARIZ PARDER               {$$ = undefined; ArbolAST.RUN.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, undefined));}
 ;
 
 FTIPO

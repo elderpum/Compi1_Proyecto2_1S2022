@@ -1,15 +1,16 @@
-import { Router } from 'express';
-import { IndexController } from '../controllers/indexControllers';
+import {Router} from "express";
+import {IndexController} from "../controllers/indexController";
 class IndexRoutes {
-  public router: Router = Router();
-  constructor() {
-    this.config();
-  }
+    public router: Router = Router();
 
-  config(): void {
-    this.router.get('/', IndexController.index);
-    this.router.post('/interpretar', IndexController.interpretar);
-  }
+    constructor() {
+        this.config();
+    }
+
+    public config(): void {
+        this.router.post("/Compilar", IndexController.interpretar);
+        this.router.post("/GRAFICAR", IndexController.open);
+    }
 }
 const indexRoutes = new IndexRoutes();
-export default indexRoutes.router;
+export  default indexRoutes.router;

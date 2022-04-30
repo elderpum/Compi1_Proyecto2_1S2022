@@ -1,4 +1,4 @@
-import Excepcion from "../excepciones/Errores";
+import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "./expresion";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
@@ -6,8 +6,8 @@ import Tipo, { tipos } from "../tablaSimbolo/tipo";
 import Literal from "./literal";
 import RETURN from "../instrucciones/return";
 import ListaSimbolo from "../tablaSimbolo/ListaSimbolos";
-import FUNCIONF from "../instrucciones/function";
-import { nodoAST } from "../abstracto/nodoAST";
+import FUNCIONF from "../instrucciones/funcion";
+import { nodoAST } from "../Abstract/nodoAST";
 export default class FUNCION extends Expresion {
 
     public nombre:string;

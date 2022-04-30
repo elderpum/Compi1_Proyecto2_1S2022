@@ -1,7 +1,7 @@
-import { Instruccion } from "../abstracto/Instruccion";
-import { node } from "../abstracto/nodo";
-import { nodoAST } from "../abstracto/nodoAST";
-import Excepcion from "../excepciones/Errores";
+import { Instruccion } from "../Abstract/instruccion";
+import { node } from "../Abstract/nodo";
+import { nodoAST } from "../Abstract/nodoAST";
+import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "../expresiones/expresion";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";

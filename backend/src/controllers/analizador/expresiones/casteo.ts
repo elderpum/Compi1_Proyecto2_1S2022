@@ -1,5 +1,5 @@
-import { nodoAST } from "../abstracto/nodoAST";
-import Excepcion from "../excepciones/Errores";
+import { nodoAST } from "../Abstract/nodoAST";
+import Excepcion from "../exceptions/Excepcion";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
 import Tipo, { tipos } from "../tablaSimbolo/tipo";

@@ -1,9 +1,9 @@
 import Entorno from "./Entorno";
-import Excepcion from "../excepciones/Errores";
-import { Instruccion } from "../abstracto/Instruccion";
+import Excepcion from "../exceptions/Excepcion";
+import { Instruccion } from "../Abstract/instruccion";
 import ListaSimbolo from "./ListaSimbolos";
 import { Expresion } from "../expresiones/expresion";
-import { nodoAST } from "../abstracto/nodoAST";
+import { nodoAST } from "../Abstract/nodoAST";
 
 
 export default class ArbolAST {
@@ -18,7 +18,7 @@ export default class ArbolAST {
     public pilaFuncion:any[] = [];
     private c:number=0;
     private grafo:string="";
-    public exec: Array<Expresion> = new Array<Expresion>();
+    public RUN: Array<Expresion> = new Array<Expresion>();
     public lista_simbolos:Array<any> = new Array<any>();
     constructor(instrucciones: Array<Instruccion>){
         this.instrucciones = instrucciones;
@@ -31,14 +31,14 @@ export default class ArbolAST {
     }
 
     public EjecutarBloque() {
-        if (this.exec.length===0) {
+        if (this.RUN.length===0) {
             this.num_error++;
-            this.errores.push(new Excepcion(this.num_error, "SEMANTICO", "No existe ninguna función principal exec", -1, -1));
+            this.errores.push(new Excepcion(this.num_error, "SEMANTICO", "No existe ninguna función principal RUN", -1, -1));
             return;
         }
-        if (this.exec.length>1) {
+        if (this.RUN.length>1) {
             this.num_error++;
-            this.errores.push(new Excepcion(this.num_error, "SEMANTICO", "Existen 2 exec en la ejecución", -1, -1));
+            this.errores.push(new Excepcion(this.num_error, "SEMANTICO", "Existen 2 RUN en la ejecución", -1, -1));
             return;
         }
         for(let elemento of this.FUNCIONES){
@@ -58,8 +58,8 @@ export default class ArbolAST {
                 }
             }
         }
-        if (this.exec.length===1) {
-            this.exec[0].getValor(this, this.global);
+        if (this.RUN.length===1) {
+            this.RUN[0].getValor(this, this.global);
         }
     }
 
@@ -74,17 +74,17 @@ export default class ArbolAST {
             stream.end();
 
         });
-        const exec = require('child_process').exec;
-        exec(`dot -T svg -o ./src/reportes/${r}.${ext} ./src/reportes/${r}.dot`, (err:any, stdout:any)=>{
+        const RUN = require('child_process').RUN;
+        RUN(`dot -T svg -o ./src/reportes/${r}.${ext} ./src/reportes/${r}.dot`, (err:any, stdout:any)=>{
             if (err) {
                 throw err;
             }
-            exec(`start ./src/reportes/${r}.${ext}`);
+            RUN(`start ./src/reportes/${r}.${ext}`);
         });
     }
     
     public openFile(){
-        const exec = require('child_process').exec;
+        const RUN = require('child_process').RUN;
         let r:string = "AST";
         let ext:string = "svg";
         try{
@@ -97,10 +97,10 @@ export default class ArbolAST {
                     instr.agregarHijo(undefined, undefined, elemento.getNodo());
                 }
             }
-            if (this.exec.length===1) {
-                let nodo = new nodoAST("EXEC");
-                nodo.agregarHijo("EXEC");
-                nodo.agregarHijo(undefined, this.exec[0].getNodo().getHijos(), undefined);
+            if (this.RUN.length===1) {
+                let nodo = new nodoAST("RUN");
+                nodo.agregarHijo("RUN");
+                nodo.agregarHijo(undefined, this.RUN[0].getNodo().getHijos(), undefined);
                 instr.agregarHijo(undefined, undefined, nodo);
             }
             let x = 0;
