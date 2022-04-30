@@ -84,7 +84,7 @@ performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* actio
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
-ArbolAST.instrucciones = $$[$0-1]; ArbolAST2 = ArbolAST; ArbolAST = new Arbol.default([]); return ArbolAST2;
+ArbolAST.Instrucciones = $$[$0-1]; ArbolAST2 = ArbolAST; ArbolAST = new Arbol.default([]); return ArbolAST2;
 break;
 case 2: case 23: case 24:
 ArbolAST.num_error++;ArbolAST.errores.push(new Excepcion.default(ArbolAST.num_error, "Sintactico", "No se esperaba  "+yytext+".", this._$.first_line, this._$.first_column));
@@ -666,7 +666,7 @@ _handle_error:
     const Decremento = require('./expresiones/decremento');
     const Casteo = require('./expresiones/casteo');
     const Condicion = require('./expresiones/condicion');
-    const Instruccion = require('./Abstract/instruccion');
+    const Instruccion = require('./Abstract/Instruccion');
     let Texto="";
     let ArbolAST = new Arbol.default([]);
     let ArbolAST2 = new Arbol.default([]);

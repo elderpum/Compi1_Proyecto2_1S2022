@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
-class LLAMADA extends instruccion_1.Instruccion {
+class LLAMADA extends Instruccion_1.Instruccion {
     constructor(linea, columna, exp) {
         super(linea, columna);
         this.exp = exp;

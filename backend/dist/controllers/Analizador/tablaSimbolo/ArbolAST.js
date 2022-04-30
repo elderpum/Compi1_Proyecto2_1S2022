@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Entorno_1 = __importDefault(require("./Entorno"));
 class ArbolAST {
-    constructor(instrucciones) {
+    constructor(Instrucciones) {
         this.errores = new Array();
-        this.instrucciones = instrucciones;
+        this.Instrucciones = Instrucciones;
         this.consola = "";
         this.global = new Entorno_1.default();
     }
@@ -15,7 +15,7 @@ class ArbolAST {
         this.consola = `${this.consola}${update}\n`;
     }
     EjecutarBloque() {
-        for (var elemento of this.instrucciones) {
+        for (var elemento of this.Instrucciones) {
             elemento.ejecutar(this, this.global);
         }
     }

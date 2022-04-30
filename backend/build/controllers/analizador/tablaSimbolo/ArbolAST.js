@@ -7,18 +7,18 @@ const Entorno_1 = __importDefault(require("./Entorno"));
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const nodoAST_1 = require("../Abstract/nodoAST");
 class ArbolAST {
-    constructor(instrucciones) {
+    constructor(Instrucciones) {
         this.FUNCIONES = new Array();
         this.errores = new Array();
-        this.raiz = new nodoAST_1.nodoAST("INSTRUCCIONES");
+        this.raiz = new nodoAST_1.nodoAST("InstruccionES");
         this.num_error = 0;
         this.pilaCiclo = [];
         this.pilaFuncion = [];
         this.c = 0;
         this.grafo = "";
-        this.RUN = new Array();
+        this.run = new Array();
         this.lista_simbolos = new Array();
-        this.instrucciones = instrucciones;
+        this.Instrucciones = Instrucciones;
         this.consola = "";
         this.global = new Entorno_1.default();
     }
@@ -26,12 +26,12 @@ class ArbolAST {
         this.consola = `${this.consola}${update}\n`;
     }
     EjecutarBloque() {
-        if (this.RUN.length === 0) {
+        if (this.run.length === 0) {
             this.num_error++;
             this.errores.push(new Excepcion_1.default(this.num_error, "SEMANTICO", "No existe ninguna función principal RUN", -1, -1));
             return;
         }
-        if (this.RUN.length > 1) {
+        if (this.run.length > 1) {
             this.num_error++;
             this.errores.push(new Excepcion_1.default(this.num_error, "SEMANTICO", "Existen 2 RUN en la ejecución", -1, -1));
             return;
@@ -41,7 +41,7 @@ class ArbolAST {
                 elemento.ejecutar(this, this.global);
             }
         }
-        for (let elemento of this.instrucciones) {
+        for (let elemento of this.Instrucciones) {
             if (typeof (elemento) !== typeof ("")) {
                 let valor = elemento;
                 if (valor.ID && !valor.UBICACION && valor.CANTIDAD && valor.DIMENSION) {
@@ -53,8 +53,8 @@ class ArbolAST {
                 }
             }
         }
-        if (this.RUN.length === 1) {
-            this.RUN[0].getValor(this, this.global);
+        if (this.run.length === 1) {
+            this.run[0].getValor(this, this.global);
         }
     }
     graphAST() {
@@ -66,34 +66,34 @@ class ArbolAST {
             stream.write(this.getDot(this.raiz));
             stream.end();
         });
-        const RUN = require('child_process').RUN;
-        RUN(`dot -T svg -o ./src/reportes/${r}.${ext} ./src/reportes/${r}.dot`, (err, stdout) => {
+        const exec = require('child_process').exec;
+        exec(`dot -T svg -o ./src/reportes/${r}.${ext} ./src/reportes/${r}.dot`, (err, stdout) => {
             if (err) {
                 throw err;
             }
-            RUN(`start ./src/reportes/${r}.${ext}`);
+            exec(`start ./src/reportes/${r}.${ext}`);
         });
     }
     openFile() {
-        const RUN = require('child_process').RUN;
+        const exec = require('child_process').exec;
         let r = "AST";
         let ext = "svg";
         try {
             let init = new nodoAST_1.nodoAST("RAIZ");
-            let instr = new nodoAST_1.nodoAST("INSTRUCCIONES");
+            let instr = new nodoAST_1.nodoAST("InstruccionES");
             for (let elemento of this.FUNCIONES) {
                 if (typeof (elemento) !== typeof ("")) {
                     instr.agregarHijo(undefined, undefined, elemento.getNodo());
                 }
             }
-            if (this.RUN.length === 1) {
+            if (this.run.length === 1) {
                 let nodo = new nodoAST_1.nodoAST("RUN");
                 nodo.agregarHijo("RUN");
-                nodo.agregarHijo(undefined, this.RUN[0].getNodo().getHijos(), undefined);
+                nodo.agregarHijo(undefined, this.run[0].getNodo().getHijos(), undefined);
                 instr.agregarHijo(undefined, undefined, nodo);
             }
             let x = 0;
-            for (let elemento of this.instrucciones) {
+            for (let elemento of this.Instrucciones) {
                 if (typeof (elemento) !== typeof ("")) {
                     instr.agregarHijo(undefined, undefined, elemento.getNodo());
                 }

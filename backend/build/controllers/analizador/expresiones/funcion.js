@@ -75,7 +75,7 @@ class FUNCION extends expresion_1.Expresion {
                 }
             }
             arbol.pilaFuncion.push("funcion");
-            for (let element of func.INSTRUCCION) {
+            for (let element of func.Instruccion) {
                 if (typeof (element) !== typeof ("")) {
                     let res = element.ejecutar(arbol, Nuevo_Entorno);
                     if (typeof (res) === typeof ({}) && !(res instanceof expresion_1.Expresion)) {

@@ -1,4 +1,4 @@
-import { Instruccion } from "../Abstract/instruccion";
+import { Instruccion } from "../Abstract/Instruccion";
 import { nodoAST } from "../Abstract/nodoAST";
 import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "../expresiones/expresion";
@@ -141,10 +141,10 @@ export default class SWITCH extends Instruccion {
                     cas.agregarHijo(undefined, undefined, caso.Case.getNodo());
                     cas.agregarHijo(":")
                     if (caso.INS) {
-                        let inst = new nodoAST("INSTRUCCIONES");
-                        for(let instruccion of caso.INS){
-                            if (typeof(instruccion)!==typeof("")) {
-                                inst.agregarHijo(undefined, undefined, instruccion.getNodo());
+                        let inst = new nodoAST("InstruccionES");
+                        for(let Instruccion of caso.INS){
+                            if (typeof(Instruccion)!==typeof("")) {
+                                inst.agregarHijo(undefined, undefined, Instruccion.getNodo());
                             }
                         }
                         cas.agregarHijo(undefined, undefined, inst);

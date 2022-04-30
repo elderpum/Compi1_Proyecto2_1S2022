@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -w",
     "dev": "nodemon build/index.js",
-    "jison": "jison src/controllers/analizador/analizador.jison"
+    "jison": "jison src/controllers/Analizador/analizador.jison && copy analizador.js build\\controllers\\Analizador"
   },
   "keywords": [],
   "author": "",

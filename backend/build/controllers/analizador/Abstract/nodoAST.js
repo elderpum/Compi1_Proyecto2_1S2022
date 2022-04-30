@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.nodoAST =  0;
+exports.nodoAST = void 0;
 class nodoAST {
     constructor(valor) {
         this.hijos = new Array();

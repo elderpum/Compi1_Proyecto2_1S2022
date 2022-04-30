@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const Entorno_1 = __importDefault(require("../tablaSimbolo/Entorno"));
 const tipo_1 = require("../tablaSimbolo/tipo");
-class IF extends instruccion_1.Instruccion {
+class IF extends Instruccion_1.Instruccion {
     constructor(linea, columna, condicion1, bloque1, bloque2, elseif) {
         super(linea, columna);
         this.condicion1 = condicion1;
@@ -114,7 +114,7 @@ class IF extends instruccion_1.Instruccion {
         nodo.agregarHijo(")");
         nodo.agregarHijo("{");
         if (this.bloque1) {
-            let nodo1 = new nodoAST_1.nodoAST("INSTRUCCIONES");
+            let nodo1 = new nodoAST_1.nodoAST("InstruccionES");
             for (let element of this.bloque1) {
                 if (typeof (element) !== typeof ("")) {
                     nodo1.agregarHijo(undefined, undefined, element.getNodo());
@@ -133,7 +133,7 @@ class IF extends instruccion_1.Instruccion {
             let nodo2 = new nodoAST_1.nodoAST("ELSE");
             nodo2.agregarHijo("ELSE");
             nodo2.agregarHijo("{");
-            let nodo1 = new nodoAST_1.nodoAST("INSTRUCCIONES");
+            let nodo1 = new nodoAST_1.nodoAST("InstruccionES");
             for (let element of this.bloque2) {
                 if (typeof (element) !== typeof ("")) {
                     nodo1.agregarHijo(undefined, undefined, element.getNodo());

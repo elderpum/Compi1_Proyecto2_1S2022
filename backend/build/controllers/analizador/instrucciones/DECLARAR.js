@@ -22,13 +22,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const literal_1 = __importDefault(require("../expresiones/literal"));
 const ListaSimbolos_1 = __importDefault(require("../tablaSimbolo/ListaSimbolos"));
 const tipo_1 = __importStar(require("../tablaSimbolo/tipo"));
-class DECLARAR extends instruccion_1.Instruccion {
+class DECLARAR extends Instruccion_1.Instruccion {
     constructor(linea, columna, ID, Tipo, DIMENSION, CANTIDAD, exp, tipo2) {
         super(linea, columna);
         this.lista = [];

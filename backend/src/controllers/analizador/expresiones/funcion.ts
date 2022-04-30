@@ -57,7 +57,7 @@ export default class FUNCION extends Expresion {
                 }
             }
             arbol.pilaFuncion.push("funcion");
-            for(let element of func.INSTRUCCION){
+            for(let element of func.Instruccion){
                 if(typeof(element) !== typeof("")){
                     let res = element.ejecutar(arbol, Nuevo_Entorno);
                     if (typeof(res)===typeof({}) && !(res instanceof Expresion)) {

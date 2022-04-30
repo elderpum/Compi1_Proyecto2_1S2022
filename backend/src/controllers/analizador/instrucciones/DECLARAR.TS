@@ -1,4 +1,4 @@
-import { Instruccion } from "../Abstract/instruccion";
+import { Instruccion } from "../Abstract/Instruccion";
 import { nodoAST } from "../Abstract/nodoAST";
 import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "../expresiones/expresion";

@@ -1,10 +1,10 @@
-import { Instruccion } from "../Abstract/instruccion";
+import { Instruccion } from "../Abstract/Instruccion";
 import { nodoAST } from "../Abstract/nodoAST";
 import Excepcion from "../exceptions/Excepcion";
 import FUNCION from "../expresiones/funcion";
 import VARIABLE from "../expresiones/variable";
 import VECTOR from "../expresiones/vector";
-import DECLARAR from "../instrucciones/DECLARAR";
+import DECLARAR from "./DECLARAR";
 import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
 import ListaSimbolo from "../tablaSimbolo/ListaSimbolos";
@@ -15,7 +15,7 @@ export default class FUNCIONF extends Instruccion {
     public tipo:Tipo;
     public nombre:string;
     public PARAMETRO: Array<DECLARAR> | any;
-    public INSTRUCCION: Array<any>;
+    public Instruccion: Array<any>;
     public vector:boolean;
     public registrada:boolean = false;
     public reg = false;
@@ -23,7 +23,7 @@ export default class FUNCIONF extends Instruccion {
         super(linea, columna);
         this.tipo = tipo;
         this.nombre = nombre;
-        this.INSTRUCCION = INS;
+        this.Instruccion = INS;
         this.PARAMETRO = Parametro;
         this.vector = vector;
     }
@@ -75,8 +75,8 @@ export default class FUNCIONF extends Instruccion {
                     }
 
                 }
-                if (this.INSTRUCCION) {
-                    for(let element of this.INSTRUCCION){
+                if (this.Instruccion) {
+                    for(let element of this.Instruccion){
                         if (typeof (element) !== typeof ("")) {
                             let valor = element;
                             if (valor.ID && !valor.UBICACION && valor.CANTIDAD && valor.DIMENSION) {
@@ -111,7 +111,7 @@ export default class FUNCIONF extends Instruccion {
     getNodo():nodoAST{
         let nodo:nodoAST = new nodoAST("FUNCION");
         let nodo2 = new nodoAST("PARAMETROS");
-        let nodo3 = new nodoAST("INSTRUCCIONES");
+        let nodo3 = new nodoAST("InstruccionES");
         if (this.vector) {
             nodo.agregarHijo("VOID");
             nodo.agregarHijo(this.nombre);
@@ -127,7 +127,7 @@ export default class FUNCIONF extends Instruccion {
             nodo.agregarHijo(")");
             nodo.agregarHijo("{");
             
-            for(let element of this.INSTRUCCION){
+            for(let element of this.Instruccion){
                 nodo3.agregarHijo(undefined, undefined, element.getNodo());
             }
             nodo.agregarHijo(undefined, undefined, nodo3);
@@ -144,7 +144,7 @@ export default class FUNCIONF extends Instruccion {
             }
             nodo.agregarHijo(")");
             nodo.agregarHijo("{");
-            for(let element of this.INSTRUCCION){
+            for(let element of this.Instruccion){
                 nodo3.agregarHijo(undefined, undefined, element.getNodo());
             }
             nodo.agregarHijo(undefined, undefined, nodo3);

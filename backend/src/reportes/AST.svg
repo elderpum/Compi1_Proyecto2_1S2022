@@ -18,7 +18,7 @@
 <g id="node2" class="node">
 <title>n1</title>
 <ellipse fill="none" stroke="black" cx="627.8" cy="-1098" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="627.8" y="-1094.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="627.8" y="-1094.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n0&#45;&gt;n1 -->
 <g id="edge1" class="edge">
@@ -342,7 +342,7 @@
 <g id="node33" class="node">
 <title>n32</title>
 <ellipse fill="none" stroke="black" cx="1263.8" cy="-954" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="1263.8" y="-950.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="1263.8" y="-950.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n21&#45;&gt;n32 -->
 <g id="edge32" class="edge">
@@ -798,7 +798,7 @@
 <g id="node72" class="node">
 <title>n71</title>
 <ellipse fill="none" stroke="black" cx="2592.8" cy="-810" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="2592.8" y="-806.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="2592.8" y="-806.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n56&#45;&gt;n71 -->
 <g id="edge71" class="edge">
@@ -1254,7 +1254,7 @@
 <g id="node102" class="node">
 <title>n101</title>
 <ellipse fill="none" stroke="black" cx="3547.8" cy="-666" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="3547.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="3547.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n90&#45;&gt;n101 -->
 <g id="edge101" class="edge">
@@ -1530,7 +1530,7 @@
 <g id="node126" class="node">
 <title>n125</title>
 <ellipse fill="none" stroke="black" cx="4233.8" cy="-666" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="4233.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="4233.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n114&#45;&gt;n125 -->
 <g id="edge125" class="edge">
@@ -1806,7 +1806,7 @@
 <g id="node286" class="node">
 <title>n285</title>
 <ellipse fill="none" stroke="black" cx="6536.8" cy="-666" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="6536.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="6536.8" y="-662.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n138&#45;&gt;n285 -->
 <g id="edge285" class="edge">
@@ -3666,7 +3666,7 @@
 <g id="node300" class="node">
 <title>n299</title>
 <ellipse fill="none" stroke="black" cx="6916.8" cy="-594" rx="83.39" ry="18"/>
-<text text-anchor="middle" x="6916.8" y="-590.3" font-family="Times New Roman,serif" font-size="14.00">INSTRUCCIONES</text>
+<text text-anchor="middle" x="6916.8" y="-590.3" font-family="Times New Roman,serif" font-size="14.00">InstruccionES</text>
 </g>
 <!-- n296&#45;&gt;n299 -->
 <g id="edge299" class="edge">

@@ -3,12 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const Entorno_1 = __importDefault(require("../tablaSimbolo/Entorno"));
 const tipo_1 = require("../tablaSimbolo/tipo");
-class SWITCH extends instruccion_1.Instruccion {
+class SWITCH extends Instruccion_1.Instruccion {
     constructor(linea, columna, Variable, Case, Default) {
         super(linea, columna);
         this.Variable = Variable;
@@ -146,10 +146,10 @@ class SWITCH extends instruccion_1.Instruccion {
                     cas.agregarHijo(undefined, undefined, caso.Case.getNodo());
                     cas.agregarHijo(":");
                     if (caso.INS) {
-                        let inst = new nodoAST_1.nodoAST("INSTRUCCIONES");
-                        for (let instruccion of caso.INS) {
-                            if (typeof (instruccion) !== typeof ("")) {
-                                inst.agregarHijo(undefined, undefined, instruccion.getNodo());
+                        let inst = new nodoAST_1.nodoAST("InstruccionES");
+                        for (let Instruccion of caso.INS) {
+                            if (typeof (Instruccion) !== typeof ("")) {
+                                inst.agregarHijo(undefined, undefined, Instruccion.getNodo());
                             }
                         }
                         cas.agregarHijo(undefined, undefined, inst);

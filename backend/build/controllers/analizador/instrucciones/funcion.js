@@ -3,20 +3,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const Entorno_1 = __importDefault(require("../tablaSimbolo/Entorno"));
 const ListaSimbolos_1 = __importDefault(require("../tablaSimbolo/ListaSimbolos"));
 const tipo_1 = require("../tablaSimbolo/tipo");
-class FUNCIONF extends instruccion_1.Instruccion {
+class FUNCIONF extends Instruccion_1.Instruccion {
     constructor(linea, columna, tipo, nombre, INS, Parametro, vector = false) {
         super(linea, columna);
         this.registrada = false;
         this.reg = false;
         this.tipo = tipo;
         this.nombre = nombre;
-        this.INSTRUCCION = INS;
+        this.Instruccion = INS;
         this.PARAMETRO = Parametro;
         this.vector = vector;
     }
@@ -64,8 +64,8 @@ class FUNCIONF extends instruccion_1.Instruccion {
                         }
                     }
                 }
-                if (this.INSTRUCCION) {
-                    for (let element of this.INSTRUCCION) {
+                if (this.Instruccion) {
+                    for (let element of this.Instruccion) {
                         if (typeof (element) !== typeof ("")) {
                             let valor = element;
                             if (valor.ID && !valor.UBICACION && valor.CANTIDAD && valor.DIMENSION) {
@@ -100,7 +100,7 @@ class FUNCIONF extends instruccion_1.Instruccion {
     getNodo() {
         let nodo = new nodoAST_1.nodoAST("FUNCION");
         let nodo2 = new nodoAST_1.nodoAST("PARAMETROS");
-        let nodo3 = new nodoAST_1.nodoAST("INSTRUCCIONES");
+        let nodo3 = new nodoAST_1.nodoAST("InstruccionES");
         if (this.vector) {
             nodo.agregarHijo("VOID");
             nodo.agregarHijo(this.nombre);
@@ -115,7 +115,7 @@ class FUNCIONF extends instruccion_1.Instruccion {
             }
             nodo.agregarHijo(")");
             nodo.agregarHijo("{");
-            for (let element of this.INSTRUCCION) {
+            for (let element of this.Instruccion) {
                 nodo3.agregarHijo(undefined, undefined, element.getNodo());
             }
             nodo.agregarHijo(undefined, undefined, nodo3);
@@ -133,7 +133,7 @@ class FUNCIONF extends instruccion_1.Instruccion {
             }
             nodo.agregarHijo(")");
             nodo.agregarHijo("{");
-            for (let element of this.INSTRUCCION) {
+            for (let element of this.Instruccion) {
                 nodo3.agregarHijo(undefined, undefined, element.getNodo());
             }
             nodo.agregarHijo(undefined, undefined, nodo3);

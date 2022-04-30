@@ -3,10 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
-class CONTINUE extends instruccion_1.Instruccion {
+class CONTINUE extends Instruccion_1.Instruccion {
     constructor(linea, columna) {
         super(linea, columna);
     }

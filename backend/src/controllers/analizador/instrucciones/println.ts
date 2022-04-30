@@ -6,7 +6,7 @@ import ArbolAST from "../tablaSimbolo/ArbolAST";
 import Entorno from "../tablaSimbolo/Entorno";
 import Tipo, { tipos } from "../tablaSimbolo/tipo";
 
-export default class Imprimir extends Instruccion {
+export default class println extends Instruccion {
     public exp: Expresion | any;
     constructor(linea:number, columna:number, exp?:Expresion){
         super(linea, columna);
@@ -35,8 +35,8 @@ export default class Imprimir extends Instruccion {
     }
 
     getNodo():nodoAST{
-        let nodo:nodoAST = new nodoAST("PRINT");
-        nodo.agregarHijo("print");
+        let nodo:nodoAST = new nodoAST("PRINTLN");
+        nodo.agregarHijo("println");
         nodo.agregarHijo("(");
         nodo.agregarHijo(undefined,undefined,this.exp.getNodo());
         nodo.agregarHijo(")");

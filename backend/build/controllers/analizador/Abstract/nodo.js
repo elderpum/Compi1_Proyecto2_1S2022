@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.node =  0;
+exports.node = void 0;
 class node {
     constructor(linea, columna) {
         this.linea = linea;

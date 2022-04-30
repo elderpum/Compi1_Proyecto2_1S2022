@@ -1,4 +1,4 @@
-import { Instruccion } from "../Abstract/instruccion";
+import { Instruccion } from "../Abstract/Instruccion";
 import { nodoAST } from "../Abstract/nodoAST";
 import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "../expresiones/expresion";
@@ -124,7 +124,7 @@ export default class FOR extends Instruccion {
         nodo.agregarHijo(")");
         nodo.agregarHijo("{");
         for(let element of this.bloque1){
-            let nodo2 = new nodoAST("INSTRUCCIONES");
+            let nodo2 = new nodoAST("InstruccionES");
             if(typeof(element) !== typeof("")){
                 nodo2.agregarHijo(undefined, undefined, element.getNodo());
             }

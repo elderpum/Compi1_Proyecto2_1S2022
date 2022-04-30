@@ -1,4 +1,4 @@
-import { Instruccion } from "../Abstract/instruccion";
+import { Instruccion } from "../Abstract/Instruccion";
 import { nodoAST } from "../Abstract/nodoAST";
 import Excepcion from "../exceptions/Excepcion";
 import { Expresion } from "../expresiones/expresion";
@@ -117,7 +117,7 @@ export default class DOWHILE extends Instruccion {
         let nodo:nodoAST = new nodoAST("DO-WHILE");
         nodo.agregarHijo("DO");
         nodo.agregarHijo("{");
-        let nodo2:nodoAST = new nodoAST("INSTRUCCIONES");
+        let nodo2:nodoAST = new nodoAST("InstruccionES");
         for(let element of this.bloque1){
             if(typeof(element) !== typeof("")){
                 nodo2.agregarHijo(undefined, undefined, element.getNodo());

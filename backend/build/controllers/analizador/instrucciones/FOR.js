@@ -3,13 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const instruccion_1 = require("../Abstract/instruccion");
+const Instruccion_1 = require("../Abstract/Instruccion");
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
 const literal_1 = __importDefault(require("../expresiones/literal"));
 const Entorno_1 = __importDefault(require("../tablaSimbolo/Entorno"));
 const tipo_1 = require("../tablaSimbolo/tipo");
-class FOR extends instruccion_1.Instruccion {
+class FOR extends Instruccion_1.Instruccion {
     constructor(linea, columna, declaracion, condicion, actualizacion, bloque1, tipo) {
         super(linea, columna);
         this.tipo = "";
@@ -120,7 +120,7 @@ class FOR extends instruccion_1.Instruccion {
         nodo.agregarHijo(")");
         nodo.agregarHijo("{");
         for (let element of this.bloque1) {
-            let nodo2 = new nodoAST_1.nodoAST("INSTRUCCIONES");
+            let nodo2 = new nodoAST_1.nodoAST("InstruccionES");
             if (typeof (element) !== typeof ("")) {
                 nodo2.agregarHijo(undefined, undefined, element.getNodo());
             }

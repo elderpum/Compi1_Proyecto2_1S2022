@@ -7,10 +7,11 @@
     const Arbol = require('./tablaSimbolo/ArbolAST');
     const Expresion = require('./expresiones/expresion');
     const Imprimir = require('./Instrucciones/Imprimir');
+    const Println = require('./Instrucciones/println');
     const DEC = require('./Instrucciones/decremento');
     const INC = require('./Instrucciones/incrementar');
     const DECLARAR = require('./Instrucciones/DECLARAR');
-    const ASIGNAR = require('./Instrucciones/ASIGNAR')
+    const ASIGNAR = require('./Instrucciones/ASIGNAR');
     const Aritmetica = require('./expresiones/aritmetica');
     const TERNARIO = require('./expresiones/ternario');
     const TOLOWER = require('./expresiones/toLower');
@@ -73,6 +74,7 @@
 <Cadena>["]         {yytext = Texto; this.popState(); return 'Cadena';}
 
 "PRINT"                 return "PRINT";
+"PRINTLN"               return "PRINTLN";
 ";"                     return "PTCOMA";
 ":"                     return "DOSPT"
 "."                     return "PT";
@@ -138,7 +140,7 @@
 "Typeof"                return "TYPEOF";
 "toSTRING"              return "TOSTRING";
 "toCharArray"           return "CHARARRAY";
-"RUN"                   return "RUN";
+"RUN"                  return "RUN";
 
 
 
@@ -184,6 +186,7 @@ LINS
 
 INS
     : PRINT PARIZ EXP PARDER PTCOMA                 {$$ = new Imprimir.default(this._$.first_line, this._$.first_column, $3); }
+    | PRINTLN PARIZ EXP PARDER PTCOMA               {$$ = new Println.default(this._$.first_line, this._$.first_column, $3); }
     | DECLARACION PTCOMA                            {$$ = $1}
     | ASIGNACION PTCOMA                             {$$ = $1}
     | FIF                                           {$$ = $1}
@@ -229,15 +232,15 @@ ASIGNACION
 ;
 
 FUNCION
-    :FTIPO ID PARIZ PARDER LLAVEIZ LINS LLAVEDER                {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$1, $2, $6));}
-    |FTIPO ID PARIZ PARDER LLAVEIZ LLAVEDER                     {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$1, $2, []));}
-    |FTIPO ID PARIZ PARAMETROS PARDER LLAVEIZ LINS LLAVEDER     {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$1, $2, $7, $4));}
-    |FTIPO ID PARIZ PARAMETROS PARDER LLAVEIZ LLAVEDER          {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$1, $2, [], $4));}
-    |VOID ID PARIZ PARAMETROS PARDER LLAVEIZ LINS LLAVEDER      {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $2, $7, $4,true));}
-    |VOID ID PARIZ PARDER LLAVEIZ LINS LLAVEDER                 {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $2, $6, undefined,true));}
-    |VOID ID PARIZ PARAMETROS PARDER LLAVEIZ LLAVEDER           {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $2, [], $4,true));}
-    |VOID ID PARIZ PARDER LLAVEIZ LLAVEDER                      {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $2, [], undefined,true));}
-    |VOID error LLAVEDER                                        {ArbolAST.num_error++; ArbolAST.errores.push(new Excepcion.default(ArbolAST.num_error, "Sintactico", "No se esperaba  "+yytext+".", this._$.first_line, this._$.first_column));}
+    :ID PARIZ PARDER DOSPT FTIPO LLAVEIZ LINS LLAVEDER                {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$5, $1, $7));}
+    |ID PARIZ PARDER DOSPT FTIPOLLAVEIZ LLAVEDER                      {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$5, $1, []));}
+    |ID PARIZ PARAMETROS PARDER DOSPT FTIPO LLAVEIZ LINS LLAVEDER     {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$6, $1, $8, $3));}
+    |ID PARIZ PARAMETROS PARDER DOSPT FTIPO LLAVEIZ LLAVEDER          {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,$6, $1, [], $3));}
+    |ID PARIZ PARAMETROS PARDER DOSPT VOID LLAVEIZ LINS LLAVEDER      {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $1, $8, $3,true));}
+    |ID PARIZ PARDER DOSPT VOID LLAVEIZ LINS LLAVEDER                 {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $1, $7, undefined,true));}
+    |ID PARIZ PARAMETROS PARDER DOSPT VOID LLAVEIZ LLAVEDER           {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $1, [], $3,true));}
+    |ID PARIZ PARDER DOSPT VOID LLAVEIZ LLAVEDER                      {$$ = ""; ArbolAST.FUNCIONES.push(new FUNC.default(this._$.first_line, this._$.first_column,new Tipo.default(Tipo.tipos.ENTERO), $1, [], undefined,true));}
+    |ID error LLAVEDER                                        {ArbolAST.num_error++; ArbolAST.errores.push(new Excepcion.default(ArbolAST.num_error, "Sintactico", "No se esperaba  "+yytext+".", this._$.first_line, this._$.first_column));}
 ;
 
 PARAMETROS
@@ -295,8 +298,8 @@ DOWHILE
 LLAMADA
     :ID PARIZ L_EXP PARDER              {$$ = new FUNCION.default(this._$.first_line, this._$.first_column, $1, $3);}
     |ID PARIZ PARDER                    {$$ = new FUNCION.default(this._$.first_line, this._$.first_column, $1, undefined);}
-    |RUN ID PARIZ L_EXP PARDER         {$$ = undefined; ArbolAST.RUN.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, $4));}
-    |RUN ID PARIZ PARDER               {$$ = undefined; ArbolAST.RUN.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, undefined));}
+    |RUN ID PARIZ L_EXP PARDER         {$$ = undefined; ArbolAST.run.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, $4));}
+    |RUN ID PARIZ PARDER               {$$ = undefined; ArbolAST.run.push(new FUNCION.default(this._$.first_line, this._$.first_column, $2, undefined));}
 ;
 
 FTIPO
@@ -388,5 +391,5 @@ NATIVAS
     |ROUND PARIZ EXP PARDER           {$$ = new NATIVAS.default(this._$.first_line, this._$.first_column, $1, $3);}
     |TYPEOF PARIZ EXP PARDER          {$$ = new NATIVAS.default(this._$.first_line, this._$.first_column, $1, $3);}
     |TOSTRING PARIZ EXP PARDER        {$$ = new NATIVAS.default(this._$.first_line, this._$.first_column, $1, $3);}
-    |CHARARRAY PARIZ EXP PARDER     {$$ = new NATIVAS.default(this._$.first_line, this._$.first_column, $1, $3);}
+    |CHARARRAY PARIZ EXP PARDER       {$$ = new NATIVAS.default(this._$.first_line, this._$.first_column, $1, $3);}
 ;

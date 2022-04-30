@@ -24,7 +24,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const nodoAST_1 = require("../Abstract/nodoAST");
 const Excepcion_1 = __importDefault(require("../exceptions/Excepcion"));
-const expresion_1 = require("../expresiones/expresion");
+const expresion_1 = require("./expresion");
 const tipo_1 = __importStar(require("../tablaSimbolo/tipo"));
 const literal_1 = __importDefault(require("./literal"));
 class TERNARIO extends expresion_1.Expresion {
